@@ -1,0 +1,1363 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage[left=25mm,right=25mm,top=28mm,bottom=20mm,headsep=4mm,footskip=8mm,voffset=-4mm]{geometry}
+\usepackage{fancyhdr} %页眉页脚
+\usepackage[square,super,comma,sort,compress]{natbib} %文献格式
+\usepackage{titletoc}
+\usepackage{titlesec}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor} %彩色工具
+\usepackage[CJKbookmarks=true]{hyperref}
+%首行缩进
+\parindent=2em
+%% 定义正文字体
+\usepackage{fontspec}
+%\usepackage[slantfont,boldfont]{xeCJK}
+\usepackage[BoldFont,CJKnumber]{xeCJK}
+%\usepackage{xeCJK}
+%\setmainfont{Times New Roman}
+%\setmonofont{Consolas}
+%\setmonofont{Courier New}
+\setCJKmainfont{SimSun}
+\setCJKfamilyfont{song}{SimSun}
+\setCJKfamilyfont{hei}{SimHei}
+\newcommand\song{\CJKfamily{song}}
+\newcommand\hei{\CJKfamily{hei}}
+
+\renewcommand{\baselinestretch}{1.25}
+\usepackage{xunicode}% provides unicode character macros
+\usepackage{xltxtra} % provides some fixes/extras
+
+
+% 重定义字号命令
+\newcommand{\xiaochu}{\fontsize{30pt}{40pt}\selectfont}    % 小初, 1.5倍行距
+\newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}    % 一号, 1.4倍行距
+\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}    % 二号, 1.25倍行距
+\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}    % 小二, 单倍行距
+\newcommand{\sanhao}{\fontsize{16pt}{24pt}\selectfont}    % 三号, 1.5倍行距
+\newcommand{\xiaosan}{\fontsize{15pt}{22pt}\selectfont}    % 小三, 1.5倍行距
+\newcommand{\sihao}{\fontsize{14pt}{21pt}\selectfont}    % 四号, 1.5倍行距
+\newcommand{\banxiaosi}{\fontsize{13pt}{19.5pt}\selectfont}    % 半小四, 1.5倍行距
+\newcommand{\xiaosi}{\fontsize{12pt}{15pt}\selectfont}    % 小四, 1.25倍行距
+\newcommand{\dawuhao}{\fontsize{11pt}{11pt}\selectfont}    % 大五号, 单倍行距
+\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont}    % 五号, 单倍行距
+\newcommand{\xiaowu}{\fontsize{9pt}{9pt}\selectfont}    % 小五号, 单倍行距
+
+
+\renewcommand{\title}[1]{\def\ECUST@title{#1}}
+\def\ECUST@title{}
+\def\mainmatter{\fancypagestyle{plain}{}
+    \pagestyle{fancy}
+    \fancyhead[LO,RE]{\xiaowu{\ECUST@title}}%
+    \fancyhead[RO,LE]{\wuhao{\thepage}}%
+    \fancyfoot{}%
+
+}
+\renewcommand{\contentsname}{\hei\xiaoer 目~录}
+\setcounter{tocdepth}{2}\setcounter{secnumdepth}{4}
+\titlecontents{section}[12bp]{\vspace{0pt}}
+    {\hei\sihao\thecontentslabel\quad}{}
+    {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
+\titlecontents{subsection}[12bp]{\vspace{0pt}}
+    {\hei\xiaosi\thecontentslabel\quad}{}
+    {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
+
+%% 正文标题格式
+\titleformat{\section}[hang]{\centering\hei\xiaoer}{\thesection{}}{1em}{}
+\titleformat{\subsection}[hang]{\song\sihao}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}[hang]{\hei\xiaosi}{\thesubsubsection}{0.5em}{}
+\titlespacing{\section}{0bp}{0bp}{12bp}
+\titlespacing{\subsection}{0bp}{12bp}{0bp}
+\titlespacing{\subsubsection}{0bp}{12bp}{0bp}
+   
+% 图表定义
+\renewcommand{\figurename}{\bfseries \song \xiaowu 图}
+\numberwithin{figure}{section}
+\renewcommand{\tablename}{\bfseries \song \xiaowu  表}
+\numberwithin{table}{section}
+\renewcommand{\thefigure}{\thesection-\arabic{figure}}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\renewcommand{\lstlistingname}{\bfseries \song \xiaowu 算法}
+\def\thelstlisting{\thesection.\arabic{lstlisting}}
+
+%\makeatletter
+%\@addtoreset{figure}{section}
+%\makeatother
+
+
+%公式按章编号
+
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\thesection-\arabic{equation}} 
+
+
+%% 引用文献格式
+%\let\textcite=\cite
+%\renewcommand{\cite}[1]{\textsuperscript{\xiaosihao\textcite{#1}}}
+\renewcommand\refname{\vspace{0pt}参考文献\vspace{12pt}}
+
+%% 中文摘要和关键词
+\newenvironment{cnabstract}[1][]{%
+        \thispagestyle{plain}%
+    \fancyfoot{}%
+    \def\ECUST@keywords{#1}%
+        \vspace*{102bp}%
+        \begin{center}%
+        {\hei\xiaoer 摘要}%
+        \end{center}
+        \vspace{12bp}%
+    \par%
+}{%
+    \par%
+    \vspace{12bp}%
+    \noindent%
+    {\quad\quad\hei\xiaosi 关键词：}\quad{\ECUST@keywords}%
+    %\let\ECUST@keywords=\relax%
+    \clearpage%
+    %\setcounter{page}{0}%
+}
+
+
+%% 英文摘要和关键词
+\newenvironment{enabstract}[1]{%
+        \thispagestyle{plain}%
+    \fancyfoot{}%
+    \def\ECUST@keywords{#1}%
+        \vspace*{102bp}%
+        \begin{center}%
+        {\bfseries\xiaoer Abstract}%
+        \end{center}
+        \vspace{12bp}%
+    \par%
+}{%
+    \par%
+    \vspace{12bp}%
+    \noindent%
+    { \quad \quad \bfseries\xiaosi Keywords:}\quad{\ECUST@keywords}%
+    %\let\ECUST@keywords=\relax%
+    \clearpage%
+    %\setcounter{page}{0}%
+}
+
+
+
+%一些行距
+\makeatletter
+\def\enumerate{%
+ \ifnum \@enumdepth >\thr@@\@toodeep\else
+   \advance\@enumdepth\@ne
+   \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
+     \expandafter
+     \list
+       \csname label\@enumctr\endcsname
+       {\usecounter\@enumctr\def\makelabel##1{\hss\llap{##1}}%
+         \addtolength{\parsep}{0.25ex}
+         \addtolength{\itemsep}{-8pt} %%%%
+         \addtolength{\topsep}{-8pt}
+         }
+ \fi}
+\makeatother
+
+\makeatletter
+\def\itemize{%
+ \ifnum \@itemdepth >\thr@@\@toodeep\else
+   \advance\@itemdepth\@ne
+   \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
+   \expandafter
+   \list
+     \csname\@itemitem\endcsname
+     {\def\makelabel##1{\hss\llap{##1}}%
+         \addtolength{\parsep}{0.25ex}
+         \addtolength{\itemsep}{-8pt} %%%%
+         \addtolength{\topsep}{-8pt}
+         } %%%%
+ \fi}
+\makeatother
+
+
+%代码列表样式
+\usepackage{color}
+\lstset{
+         frame=leftline，
+         extendedchars=true,
+         breaklines=true,
+         keywordstyle=\color{blue},
+         stringstyle=\color{red},
+         showspaces=false,
+         showtabs=false,
+         backgroundcolor=\color{lightgray},
+         showstringspaces=false
+}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language chinese-simplified
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\pdf_title "面板非参"
+\pdf_author "姜叶飞"
+\pdf_keywords "面板"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\paperwidth 20.99cm
+\paperheight 29.7cm
+\topmargin 2.8cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+title{面板数据的非参数回归估计及其R语言实现和应用}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{Roman}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{cnabstract}[
+\backslash
+xiaosi{面板数据 , 非参数计量经济学 , R语言 , 弹性影响}] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+xiaosi{本文基于面板数据的非参数回归估计进行了实例研究以及R语言算法的实现,实例考察了居民生活标准的变化对经济发展的影响。首先，本文构建出相关指标，并使用
+因子分析降维成经济、社会和高校规模三个因子；然后分别采用固定效应和随机效应的非参数模型进行平均水平的估计以及逐点估计得其弹性影响。此外，本文还分别对各指标进行了
+上述的非参数逐点估计分析，从而更为完整的解释了居民生活标准的变化对经济增长的正向影响及其变化趋势。最后本文还对前面的估计作了灵敏度和优缺点分析以及未来研究的展望
+。}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{cnabstract} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{enabstract}{
+\backslash
+xiaosi{Panel Data , Nonparametric Econometrics , R-Language , Elasticity
+ Effect}}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+xiaosi{This paper's analysis is based on the Nonparametric Regression Estimate
+ theory of Panel Data, and also includes a Example and a achievement of
+ R-Language algorithm.
+ The Example Study examined how the changes of the living standard of residents
+ affect the economic development.
+ At first, we build a set of relevant indexes and reduce the dimensions
+ to Economic Factor, Social Factor and University Scale Factor through Factor
+ Analysis.
+ Then we estimate the mean level with Nonparametric Fixed-Effects Model
+ and Random-Effects Model respectively, and obtain the three factors' elasticity
+ on the GDP's growth resulting from the pointwise estimation.
+ Then this paper also adopts Nonparametric pointwise estimations to analysis
+ all indexes, which more fully explains that the changes of the residents'
+ living standards have positive effects on GDP's growth and its fluctuant
+ tendency.
+ Finally, we analysis the Robustness for previous estimations, and then
+ summarize their Strengths and Weaknesses, while look forward to Extension
+ and Further Work.} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{enabstract} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{arabic} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+mainmatter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+引言
+\end_layout
+
+\begin_layout Subsection
+研究背景
+\end_layout
+
+\begin_layout Subsubsection
+非参数计量经济学
+\end_layout
+
+\begin_layout Standard
+计量经济学(Econometrics)作为经济学科的一个分支学科，在
+\begin_inset Formula $20$
+\end_inset
+
+世纪
+\begin_inset Formula $20$
+\end_inset
+
+年代末由R.Frish创立，经过
+\begin_inset Formula $40$
+\end_inset
+
+多年的发展，其经典理论方法已经成熟。自
+\begin_inset Formula $20$
+\end_inset
+
+世纪
+\begin_inset Formula $70$
+\end_inset
+
+年代以来，随着经济活动的复杂性增强和计量经济学应用领域的扩展，计量经济学理论方法得到了很大的发展。除了
+\begin_inset Formula $2000$
+\end_inset
+
+年诺贝尔经济学奖获得者J.J.Heckman对选择性样本模型理论的发展和D.L.Mcfadden对离散选择模型理论的发展，以及以此开创的微观计量经济学之外，宏观领域中动
+态计量经济学模型理论方法的发展是这个阶段最重要的部分，该方法以非参数模型理论方法为基础，并
+\end_layout
+
+\begin_layout Itemize
+可以控制个体异质性。面板数据表明个体、企业、州或国家之间都存在异质性。时间序列和横截面分析没有控制这种异质性，因此其结果很可能是有偏的。
+\end_layout
+
+\begin_layout Itemize
+面板数据具有更多的信息，更大的变异，变量之间更弱的共线性，更大的自由度以及更高的效率。
+\end_layout
+
+\begin_layout Itemize
+面板数据更适合于研究动态调整的过程。因为表面上相对稳定的横截面分布事实上隐藏了许多变化，失业的交替、工作的轮换、居住地的迁移和收入的波动等更适合于用面板数据研究
+。而且如果这种面板数据的时期数足够长，它们还能清楚地表明对经济政策变化的调整速度。
+\end_layout
+
+\begin_layout Itemize
+面板数据还可以识别、测量单纯使用横截面或时间序列数据无法估计的影响。
+\end_layout
+
+\begin_layout Itemize
+与纯横截面数据或时间序列数据相比，面板数据模型允许我们构建并检验更复杂的行为模型。
+\end_layout
+
+\begin_layout Itemize
+基于个体、企业或家庭所收集的微观面板数据与在宏观层次上所收集的类似变量相比更加准确，而且还可能消除企业或个体数据加总所导致的偏倚。
+\end_layout
+
+\begin_layout Itemize
+一般宏观面板数据中时间序列的时期数较长，而且与时间序列分析中进行单位根检验遇到的非标准分布问题不同，面板单位根检验通常具有标准的渐进分布。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+参数模型与非参数模型的比较分析
+\end_layout
+
+\begin_layout Subsection
+计量经济参数模型简析
+\end_layout
+
+\begin_layout Standard
+在日常生活以及经济活动中，我们常常需要研究生产投入与产出之间的关系。例如，在宏观方面，以
+\begin_inset Formula $Y=A(t)L^{\alpha}K^{\beta}\mu$
+\end_inset
+
+为基本形式的Cobb-Douglas生产函数通过分析两者的关系，分析并预测了各个国家、地区的工业系统或大企业的产出水平；在微观方面，商品消费支出和收入之间关系（
+或恩格尔曲线）的研究也对两者之间的关系进行分析和预测以商品消费支出和收入之间关系为例，Working(1943)、Leser(1963)的实证研究表明，消费支出
+份额关于总支出的线性参数恩格尔曲线模型(Workling-Leser模型)可以较好地拟合其实际样本数据，模型形式如下：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+w_{k}=\xi_{k}+\beta_{k}\log M
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+其中，
+\begin_inset Formula $w_{k}$
+\end_inset
+
+是商品类
+\begin_inset Formula $k$
+\end_inset
+
+的消费支出
+\begin_inset Formula $m_{k}$
+\end_inset
+
+占总消费支出
+\begin_inset Formula $M$
+\end_inset
+
+的比例，
+\begin_inset Formula $\xi_{k}$
+\end_inset
+
+是与价格有关的常数，
+\begin_inset Formula $\log$
+\end_inset
+
+指以
+\begin_inset Formula $e$
+\end_inset
+
+为底的对数（下同）。这样表示的恩格尔曲线不但可以很好地拟合实际数据，而且还有一定的微观基础：它是几乎理想需求系统(AIDS)在价格给定的情况下的一个特例（详见D
+eaton与Muellbauer(1980)的结论）。参照周先波与田凤平(2008、2009)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zxb2009,zxb20081"
+
+\end_inset
+
+的研究结果可知，Working-Leser参数模型设定的总消费支出的对数和各类商品消费份额之间的关系是线性的。较强线性约束使其不一定能很好地描绘所有的数据。与传
+统非参数核估计进行比较，使用非参数估计方法拟合的图形比参数估计拟合的图形更好地反映了两变量之间的变化趋势及特征。在下面的章节中我们将通过一组数据比较参数估计和非
+参数估计的拟合效果。
+\end_layout
+
+\begin_layout Subsection
+截面数据非参数Nadaraya-Watson核估计概述
+\end_layout
+
+\begin_layout Standard
+假设
+\begin_inset Formula $Y$
+\end_inset
+
+为被解释变量，
+\begin_inset Formula $\boldsymbol{X}=\left(X_{1},\cdots,X_{q}\right)$
+\end_inset
+
+为解释变量向量，是影响
+\begin_inset Formula $Y$
+\end_inset
+
+的
+\begin_inset Formula $q$
+\end_inset
+
+个重要因素。给定样本观测值
+\begin_inset Formula $(Y_{1},\boldsymbol{X_{1}})$
+\end_inset
+
+,
+\begin_inset Formula $(Y_{2},\boldsymbol{X_{2}})$
+\end_inset
+
+,
+\begin_inset Formula $\cdots$
+\end_inset
+
+,
+\begin_inset Formula $(Y_{n},\boldsymbol{X_{n}})$
+\end_inset
+
+，假定
+\begin_inset Formula $(Y_{i},\boldsymbol{X_{i}})$
+\end_inset
+
+独立同分布（下面简称i.i.d），建立非参数回归模型：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Y_{i}=m(\boldsymbol{X_{i}})+u_{i}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+其中，
+\begin_inset Formula $m(\cdot)$
+\end_inset
+
+是未知的函数，
+\begin_inset Formula $m(\boldsymbol{X_{i}})=E(Y_{i}\mid\boldsymbol{X_{i}})$
+\end_inset
+
+，
+\begin_inset Formula $\varepsilon_{i}$
+\end_inset
+
+是均值为零、方差为
+\begin_inset Formula $1$
+\end_inset
+
+且与
+\begin_inset Formula $\boldsymbol{X_{i}}$
+\end_inset
+
+独立的序列，随机误差项
+\begin_inset Formula $u_{i}=\sigma(\boldsymbol{X_{i}})\varepsilon_{i}$
+\end_inset
+
+，且
+\begin_inset Formula $E(u_{i})=0$
+\end_inset
+
+，
+\begin_inset Formula $E(Y_{i})=m(\boldsymbol{X_{i}})$
+\end_inset
+
+。则此时回归函数
+\begin_inset Formula $m(x)$
+\end_inset
+
+的核估计
+\begin_inset Formula $\hat{m}_{n}(x)$
+\end_inset
+
+为最小化：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\sum_{i=1}^{n}\left(Y_{i}-m(x)\right)^{2}K\left(\frac{\boldsymbol{X_{i}}-x}{h_{n}}\right)\label{eq:1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+其中，
+\begin_inset Formula $h_{n}$
+\end_inset
+
+为窗宽，
+\begin_inset Formula $K\left(\cdot\right)$
+\end_inset
+
+为满足
+\begin_inset Formula $K\left(u\right)\geq0$
+\end_inset
+
+，
+\begin_inset Formula $\int K\left(u\right)du=1$
+\end_inset
+
+，
+\begin_inset Formula $\int K\left(u\right)udu=0$
+\end_inset
+
+的核函数。于是，我们可以得到公式
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:1"
+
+\end_inset
+
+的核估计的表达式为：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\hat{m}_{n}\left(x\right)=\frac{\sum_{i=1}^{n}K\left(\frac{\boldsymbol{X_{i}}-x}{h_{n}}\right)Y_{i}}{\sum_{i=1}^{n}K\left(\frac{\boldsymbol{X_{i}}-x}{h_{n}}\right)}\label{eq:2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+对比分析
+\end_layout
+
+\begin_layout Standard
+从公式
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:2"
+
+\end_inset
+
+中可以看出，核估计相当于作局部加权的最小二乘估计。那么，经典参数最小二乘估计与Nadaraya-Watson核估计在拟合效果上到底有多大差别呢？下面我们将通过使
+用一组数据来对其进行比较。
+\end_layout
+
+\begin_layout Standard
+在R里面的MASS包中，我们可以找到一组名为mcycle的用来测试在事故发生时的摩托车加速度和时间的数据。其中横轴为时间
+\begin_inset Formula $X_{i}/ms$
+\end_inset
+
+，纵轴为加速度
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+。通过下列算法进行拟合。其中，线性回归选择使用stats包中的lm()函数，非参数回归选择使用KernSmooth包中的dpill函数确定窗宽，核函数选择Gau
+ss核的locpoly函数进行拟合，具体算法见算法
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lis:mcycle"
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\tiny\ttfamily},breaklines=true,frame=leftline,language=R,numbers=left"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+mcycle数据拟合
+\begin_inset CommandInset label
+LatexCommand label
+name "lis:mcycle"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+require(KernSmooth) 
+\end_layout
+
+\begin_layout Plain Layout
+
+require(MASS) 
+\end_layout
+
+\begin_layout Plain Layout
+
+data(mcycle) 
+\end_layout
+
+\begin_layout Plain Layout
+
+attach(mcycle) 
+\end_layout
+
+\begin_layout Plain Layout
+
+x <- times 
+\end_layout
+
+\begin_layout Plain Layout
+
+y <- accel
+\end_layout
+
+\begin_layout Plain Layout
+
+#线性 
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x,y) 
+\end_layout
+
+\begin_layout Plain Layout
+
+fit <- lm(y~x) 
+\end_layout
+
+\begin_layout Plain Layout
+
+abline(fit, lty=1, col='red', lwd=2) 
+\end_layout
+
+\begin_layout Plain Layout
+
+#非参 
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(x,y) 
+\end_layout
+
+\begin_layout Plain Layout
+
+h=dpill(x,y) 
+\end_layout
+
+\begin_layout Plain Layout
+
+fit <- locpoly(x,y,kernel="normal",bandwidth=h,)
+\end_layout
+
+\begin_layout Plain Layout
+
+lines(fit,col='red')
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/mcyclelm.jpg
+	width 14cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+摩托车数据及其线性拟合图
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:摩托车数据及其线性拟合图"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename figure/mcycleloc.jpg
+	width 14cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+摩托车数据的非参数回归拟合图
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:摩托车数据的非参数回归拟合图"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+魏瑾瑞
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+计算得到线性回归的拟合结果见图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:摩托车数据及其线性拟合图"
+
+\end_inset
+
+，非参数回归见图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:摩托车数据的非参数回归拟合图"
+
+\end_inset
+
+。从这些图中我们可以清楚地看到，
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+与
+\begin_inset Formula $X_{i}$
+\end_inset
+
+的关系是非线性关系，
+\begin_inset Formula $ $
+\end_inset
+
+给定已知的线性函数，拟合效果很差；即使使用其他已知的非线性函数，
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+与
+\begin_inset Formula $X_{i}$
+\end_inset
+
+的拟合效果也显然不能令人满意。而在图
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:摩托车数据的非参数回归拟合图"
+
+\end_inset
+
+中的非参数拟合图中我们可以看到非参数回归有很好的拟合效果，可以真实反映
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+与
+\begin_inset Formula $X_{i}$
+\end_inset
+
+的实际关系（在不同的核函数和窗宽的选择下，拟合效果也有一定的差异）。
+\begin_inset Formula $ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength{
+\backslash
+bibsep}{0.25ex}  %参考文献行距 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+phantomsection
+\backslash
+addcontentsline{toc}{section}{
+\backslash
+vspace{6pt}
+\backslash
+sihao
+\backslash
+hei 参考文献}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintAll"
+bibfiles "Paper"
+options "ECUST"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+phantomsection
+\backslash
+addcontentsline{toc}{section}{
+\backslash
+sihao
+\backslash
+hei 致谢}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+致谢
+\end_layout
+
+\begin_layout Standard
+四年的大学生活在论文结束的这一刻也走到了尽头，我即将离开我的母校，开始新的人生和新的生活。
+\end_layout
+
+\end_body
+\end_document

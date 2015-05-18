@@ -1,0 +1,358 @@
+%draft 选项可以使插入的图形只显示外框，以加快预览速度。
+%fleqn 让公式左对齐。
+\documentclass[12pt,a4paper,openany]{book}
+\usepackage{amsmath}  %数学公式
+\usepackage{amssymb} %数学符号
+\usepackage{mathrsfs}   % 不同于\mathcal or \mathfrak 之类的英文花体字体
+\usepackage{float}
+\usepackage{units}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{xCJKnumb} %使用汉字 章
+%\usepackage{subfigure}  % 并列的图形
+\usepackage{setspace}       % 定制表格和图形的多行标题行距
+\usepackage{supertabular}   % 使用跨页表格的宏包
+\usepackage{longtable}       %长表格，可以跨页
+\usepackage{tabularx}       %可以换行的表格
+\usepackage{booktabs}       %\toprule、\midrule 和 \bottomrule，可分别对表格顶部、中部和底部使用不同粗细的水平线
+\usepackage{array}          %固定列宽可以使用array宏包的p{2cm}系列命令，需要指定水平对齐方式，可以使用下面的形式: >{\centering}p{2cm}
+\usepackage{makeidx}        % 生成索引
+\usepackage{listings}       %支持编程语言源代码的宏包
+%\usepackage{xcolor}   
+
+%===图片处理宏包=============================
+%\usepackage{subfigure}  % 并列的图形
+%\usepackage{color}      % 支持彩色
+
+% 版面控制宏包，定义规定的版面尺寸============
+\usepackage[top=2cm,bottom=2.5cm,left=2.8cm,right=2.8cm,includehead,includefoot%
+            ]{geometry}  
+
+
+\usepackage[perpage,symbol]{footmisc}% 脚注控制
+\usepackage{fancyhdr} %页眉页脚
+\usepackage[square,super,comma,sort,compress]{natbib} %文献格式
+\usepackage{titletoc}
+\usepackage{titlesec}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor} %彩色工具
+\usepackage[CJKbookmarks=true]{hyperref}
+% 定理类环境宏包，其中 amsmath 选项用来兼容 AMS LaTeX 的宏包
+\usepackage[amsmath,thmmarks]{ntheorem}
+
+%\usepackage{subeqnarray} %多个子方程(1-1a)(1-1b)
+%\iffalse 以下是一个例子
+%\begin{subeqnarray}
+%\label{eqw} \slabel{eq0}
+% x & = & a \times b \\
+%\slabel{eq1}
+% & = & z + t\\
+%\slabel{eq2}
+% & = & z + t
+%\end{subeqnarray}
+%\fi
+
+%首行缩进
+%\parindent=2em
+\makeatletter
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+\makeatother
+\setlength{\parindent}{2em}
+%% 定义正文字体
+\usepackage{fontspec}
+\usepackage[BoldFont,SlantFont,CJKnumber]{xeCJK}
+\setmainfont{Times New Roman} % 英文字体 
+\setmonofont{Consolas}
+%\setmonofont{Courier New}
+\setCJKmainfont{Adobe 宋体 Std} %正文字体  适用于OS X，其他OS可换为SimSun等
+\setCJKfamilyfont{song}{Adobe 宋体 Std}
+\setCJKfamilyfont{hei}{Adobe 黑体 Std}
+\setCJKfamilyfont{kai}{Adobe 楷体 Std}
+\newcommand\song{\CJKfamily{song}}
+\newcommand\hei{\CJKfamily{hei}}
+\newcommand\kai{\CJKfamily{kai}}
+\XeTeXlinebreaklocale "zh" %采用中文断行方式
+\XeTeXlinebreakskip = 0pt plus 1pt %字元间可加入0pt~1pt 的弹性间距，这样才能排出左右对齐的段落。
+
+\renewcommand{\baselinestretch}{1.5} %正文行距
+\usepackage{xunicode}% provides unicode character macros
+\usepackage{xltxtra} % provides some fixes/extras
+\usepackage{url}
+
+
+
+
+% 重定义字号命令
+\newcommand{\xiaochu}{\fontsize{30pt}{40pt}\selectfont}    % 小初, 1.5倍行距
+\newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}    % 一号, 1.4倍行距
+\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}    % 二号, 1.25倍行距
+\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}    % 小二, 单倍行距
+\newcommand{\sanhao}{\fontsize{16pt}{24pt}\selectfont}    % 三号, 1.5倍行距
+\newcommand{\xiaosan}{\fontsize{15pt}{22pt}\selectfont}    % 小三, 1.5倍行距
+\newcommand{\sihao}{\fontsize{14pt}{21pt}\selectfont}    % 四号, 1.5倍行距
+\newcommand{\banxiaosi}{\fontsize{13pt}{19.5pt}\selectfont}    % 半小四, 1.5倍行距
+\newcommand{\xiaosi}{\fontsize{12pt}{18pt}\selectfont}    % 小四, 1.5倍行距
+\newcommand{\dawuhao}{\fontsize{11pt}{11pt}\selectfont}    % 大五号, 单倍行距
+\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont}    % 五号, 单倍行距
+\newcommand{\xiaowu}{\fontsize{9pt}{9pt}\selectfont}    % 小五号, 单倍行距
+
+
+
+
+
+\pagestyle{fancy}
+
+%\fancyhf{} 
+\fancyhead{}
+\fancyhead[CE]{\song \wuhao\rightmark}
+\fancyhead[CO]{\song \wuhao \leftmark}
+\fancyfoot[C]{\thepage}%
+
+%%% 
+\def\mainmatter{\fancypagestyle{fancy}{}
+\fancyhf{} 
+\fancyhead{}
+\fancyhead[CE]{\song \wuhao\rightmark}
+\fancyhead[CO]{\song \wuhao \leftmark}
+\fancyfoot[C]{\thepage}%
+}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}{}}
+%\renewcommand{\chaptermark}[1]{\markboth{\small 第\,\xCJKnumber{\thechapter}\,章\quad #1}{}}
+\renewcommand{\chaptermark}[1]{\markboth{ 第\,\thechapter \,章\quad #1}{}}
+
+
+%%% %%% Clear Header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Clear Header Style on the Last Empty Odd pages
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
+    \hbox{}%
+    \thispagestyle{empty}%              % Empty header styles
+    \newpage%
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+
+%% 
+
+
+%% 正文标题格式
+%\titleformat{\chapter}[hang]{ \centering\xiaosan\hei\bfseries}{第\,\xCJKnumber{\thechapter}\,章}{1em}{} %章：小三黑体加粗并居中
+\titleformat{\chapter}[hang]{ \centering\xiaosan\hei\bfseries}{第\,\thechapter\,章}{1em}{} %章：小三黑体加粗并居中
+
+\titleformat{\section}[hang]{\hei\sihao\bfseries}{\thesection{}}{1em}{} %节：四号黑体加粗
+\titleformat{\subsection}[hang]{\bfseries\hei\xiaosi}{\thesubsection}{0.5em}{} %目：小四黑体加粗
+\titleformat{\subsubsection}[hang]{\bfseries\hei\xiaosi}{\thesubsubsection}{0.5em}{} %子目：小四黑体加粗
+%标题间距
+\titlespacing{\chapter}{0bp}{-30bp}{12bp}
+\titlespacing{\section}{0bp}{0bp}{12bp}
+\titlespacing{\subsection}{0bp}{12bp}{0bp}
+\titlespacing{\subsubsection}{0bp}{12bp}{0bp}
+
+
+
+
+%% 中文摘要和关键词
+\newenvironment{cnabstract}[1][]{%
+        \thispagestyle{plain}%
+    %\fancyfoot{}%
+    \def\XMU@keywords{#1}%
+        \vspace*{10bp}%
+        \begin{center}%
+        {\hei\xiaoer 摘~~~~~要}%
+        \end{center}
+        \vspace{12bp}%
+    \par%
+}{%
+    \par%
+    \vspace{12bp}%
+    \noindent%
+    {\hei\xiaosi 关键词：}\quad{\XMU@keywords}%
+    %\addcontentsline{toc}{chapter}{摘要}  %摘要加入目录
+    %\let\XMU@keywords=\relax%
+    \clearpage%
+    %\setcounter{page}{1}%
+    \cleardoublepage
+}
+
+
+%% 英文摘要和关键词
+\newenvironment{enabstract}[1]{%
+        \thispagestyle{plain}%
+    \fancyfoot{}%
+    \def\XMU@keywords{#1}%
+        \vspace*{10bp}%
+        \begin{center}%
+        {\bfseries\xiaoer Abstract}%
+        \end{center}
+        \vspace{12bp}%
+    \par%
+}{%
+    \par%
+    \vspace{12bp}%
+    \noindent%
+    {\bfseries\xiaosi Key Words:}\quad{\XMU@keywords}%
+    %\addcontentsline{toe}{chapter}{Abstract}  %摘要加入目录
+    %\let\XMU@keywords=\relax%
+    \clearpage%
+    %\setcounter{page}{0}%
+    
+    \cleardoublepage
+}
+
+
+
+%%目录设置
+\renewcommand\contentsname{\hei \xiaosan 目~~~~~录}
+\setcounter{secnumdepth}{4} \setcounter{tocdepth}{2}
+
+%\titlecontents{chapter}[3.8em]{\hspace{-3.8em}\hei \sihao \bfseries}{第~\xCJKnumber{\thecontentslabel}~章~~}{}{\titlerule*[4pt]{.}\contentspage}
+\titlecontents{chapter}[3.8em]{\hspace{-3.8em}\hei \sihao \bfseries}{第~\thecontentslabel~章~~}{}{\titlerule*[4pt]{.}\contentspage}
+
+
+%修正章节数字在目录的距离
+\dottedcontents{section}[40pt]{}{22pt}{0.3pc}
+\dottedcontents{subsection}[62pt]{}{32pt}{0.3pc}
+
+%重新定义BiChapter命令，可实现标题手动换行，但不影响目录
+\def\BiChapter{\relax\@ifnextchar [{\@BiChapter}{\@@BiChapter}}
+\def\@BiChapter[#1]#2#3{\chapter[#1]{#2}
+    \addcontentsline{toe}{chapter}{\hei \bfseries \sihao Chapter \thechapter\hspace{0.5em} #3}}
+\def\@@BiChapter#1#2{\chapter{#1}
+    \addcontentsline{toe}{chapter}{\hei \bfseries \sihao Chapter \thechapter\hspace{0.5em}{\boldmath #2}}}
+%目录格式
+\newcommand{\BiSection}[2]
+{   \section{\hei \xiaosi#1}%中文
+    \addcontentsline{toe}{section}{\hei \xiaosi \bfseries \protect\numberline{\csname thesection\endcsname}#2}%英文
+    
+}
+
+\newcommand{\BiSubsection}[2]
+{    \subsection{\song \xiaosi #1}
+    \addcontentsline{toe}{subsection}{\song \xiaosi \protect\numberline{\csname thesubsection\endcsname}#2}
+}
+
+\newcommand{\BiSubsubsection}[2]
+{    \subsubsection{#1}
+    \addcontentsline{toe}{subsubsection}{\protect\numberline{\csname thesubsubsection\endcsname}#2}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 英文目录格式
+\def\@dotsep{0.75}           % 定义英文目录的点间距
+\setlength\leftmargini {0pt}
+\setlength\leftmarginii {0pt}
+\setlength\leftmarginiii {0pt}
+\setlength\leftmarginiv {0pt}
+\setlength\leftmarginv {0pt}
+\setlength\leftmarginvi {0pt}
+
+\def\engcontentsname{\bfseries \xiaosan Contents}
+\newcommand\tableofengcontents{
+   \pdfbookmark[0]{Contents}{econtent}
+     \@restonecolfalse
+   \chapter*{\engcontentsname  %chapter*上移一行，避免在toc中出现。
+       \@mkboth{%
+          \engcontentsname}{\engcontentsname}}
+   \@starttoc{toe}%
+   \if@restonecol\twocolumn\fi
+   }
+
+%%暂时没有使用
+\newcommand{\BiAppendixChapter}[2] % 该附录命令适用于发表文章，简历等
+{\phantomsection
+\markboth{#1}{#1}
+\addcontentsline{toc}{chapter}{\xiaosi #1}
+\addcontentsline{toe}{chapter}{\bfseries \xiaosi #2}  \chapter*{#1}
+}
+
+\newcommand{\BiAppChapter}[2]    % 该附录命令适用于有章节的完整附录
+{\phantomsection 
+ \chapter{#1}
+ \addcontentsline{toe}{chapter}{\bfseries \xiaosi Appendix \thechapter~~#2}
+}
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+\pagenumbering{Roman} 
+\setcounter{page}{1} 
+
+\begin{cnabstract}[\xiaosi{面板数据 , 非参数计量经济学 , R语言 , 弹性影响}] 
+\xiaosi{本文基于面板数据的非参数回归估计进行了实例研究以及R语言算法的实现,实例考察了居民生活标准的变化对经济发展的影响。首先，本文构建出相关指标，并使用因子分析降维成经济、社会和高校规模三个因子；然后分别采用固定效应和随机效应的非参数模型进行平均水平的估计以及逐点估计得其弹性影响。此外，本文还分别对各指标进行了上述的非参数逐点估计分析，从而更为完整的解释了居民生活标准的变化对经济增长的正向影响及其变化趋势。最后本文还对前面的估计作了灵敏度和优缺点分析以及未来研究的展望。}
+\end{cnabstract} 
+
+\begin{enabstract}{\xiaosi{Panel Data , Nonparametric Econometrics , R-Language , Elasticity Effect}}     
+\xiaosi{This paper's analysis is based on the Nonparametric Regression Estimate theory of Panel Data, and also includes a Example and a achievement of R-Language algorithm. The Example Study examined how the changes of the living standard of residents affect the economic development. At first, we build a set of relevant indexes and reduce the dimensions to Economic Factor, Social Factor and University Scale Factor through Factor Analysis. Then we estimate the mean level with Nonparametric Fixed-Effects Model and Random-Effects Model respectively, and obtain the three factors' elasticity on the GDP's growth resulting from the pointwise estimation. Then this paper also adopts Nonparametric pointwise estimations to analysis all indexes, which more fully explains that the changes of the residents' living standards have positive effects on GDP's growth and its fluctuant tendency. Finally, we analysis the Robustness for previous estimations, and then summarize their Strengths and Weaknesses, while look forward to Extension and Further Work.} 
+\end{enabstract} 
+
+
+\tableofcontents{}
+\pagebreak{}
+
+\pagenumbering{arabic} 
+\setcounter{page}{1} 
+
+\mainmatter
+
+\pagenumbering{arabic} 
+\setcounter{page}{1} 
+
+\mainmatter
+
+\BiChapter{绪论}{Introduction}
+\cleardoublepage
+
+\BiChapter{学习}{Study}
+
+\BiSection{引言}{Introduction}
+
+\BiSubsection{研究背景}{Background}
+
+计量经济学(Econometrics)作为经济学科的一个分支学科，在$20$世纪$20$年代末由R.Frish创立，经过$40$多年的发展，其经典理论方法已经成熟。自$20$世纪$70$年代以来，随着经济活动的复杂性增强和计量经济学应用领域的扩展，计量经济学理论方法得到了很大的发展。除了$2000$年诺贝尔经济学奖获得者J.J.Heckman对选择性样本模型理论的发展和D.L.Mcfadden对离散选择模型理论的发展，以及以此开创的微观计量经济学之外，宏观领域中动态计量经济学模型理论方法的发展是这个阶段最重要的部分，该方法以非参数模型理论方法为基础，并形成了较为完整的内容体系，构成了现代计量经济学的主要部分\cite{yaz2003}。然而到目前为止，它们仍旧处于新的领域，尚在研究和发展之中。因此，本文希望在前人研究的基础上，试图对它们的发展做出一点贡献。
+
+
+\BiSubsection{R语言概述}{R Language}
+
+R语言是主要用于统计分析、绘图的语言和操作环境。R本来是由来自新西兰奥克兰大学的Ross Ihaka和Robert Gentleman开发。现在由“R开发核心团队”负责开发。R是基于S语言的一个GNU项目，所以也可以当作S语言的一种实现，通常用S语言编写的代码都可以不作修改的在R环境下运行。R的语法也同样是来自于Scheme\cite{rwiki}。
+
+R语言给我们提供了一套完整的数据处理、计算和制图软件系统。其功能包括：
+\BiSubsection{研究背景}{Background}
+
+计量经济学(Econometrics)作为经济学科的一个分支学科，在$20$世纪$20$年代末由R.Frish创立，经过$40$多年的发展，其经典理论方法已经成熟。自$20$世纪$70$年代以来，随着经济活动的复杂性增强和计量经济学应用领域的扩展，计量经济学理论方法得到了很大的发展。除了$2000$年诺贝尔经济学奖获得者J.J.Heckman对选择性样本模型理论的发展和D.L.Mcfadden对离散选择模型理论的发展，以及以此开创的微观计量经济学之外，宏观领域中动态计量经济学模型理论方法的发展是这个阶段最重要的部分，该方法以非参数模型理论方法为基础，并形成了较为完整的内容体系，构成了现代计量经济学的主要部分\cite{yaz2003}。然而到目前为止，它们仍旧处于新的领域，尚在研究和发展之中。因此，本文希望在前人研究的基础上，试图对它们的发展做出一点贡献。
+
+
+\BiSubsection{R语言概述}{R Language}
+
+R语言是主要用于统计分析、绘图的语言和操作环境。R本来是由来自新西兰奥克兰大学的Ross Ihaka和Robert Gentleman开发。现在由“R开发核心团队”负责开发。R是基于S语言的一个GNU项目，所以也可以当作S语言的一种实现，通常用S语言编写的代码都可以不作修改的在R环境下运行。R的语法也同样是来自于Scheme\cite{rwiki}。
+
+R语言给我们提供了一套完整的数据处理、计算和制图软件系统。其功能包括：
+\BiSubsection{研究背景}{Background}
+
+计量经济学(Econometrics)作为经济学科的一个分支学科，在$20$世纪$20$年代末由R.Frish创立，经过$40$多年的发展，其经典理论方法已经成熟。自$20$世纪$70$年代以来，随着经济活动的复杂性增强和计量经济学应用领域的扩展，计量经济学理论方法得到了很大的发展。除了$2000$年诺贝尔经济学奖获得者J.J.Heckman对选择性样本模型理论的发展和D.L.Mcfadden对离散选择模型理论的发展，以及以此开创的微观计量经济学之外，宏观领域中动态计量经济学模型理论方法的发展是这个阶段最重要的部分，该方法以非参数模型理论方法为基础，并形成了较为完整的内容体系，构成了现代计量经济学的主要部分\cite{yaz2003}。然而到目前为止，它们仍旧处于新的领域，尚在研究和发展之中。因此，本文希望在前人研究的基础上，试图对它们的发展做出一点贡献。
+
+
+\BiSubsection{R语言概述}{R Language}
+
+R语言是主要用于统计分析、绘图的语言和操作环境。R本来是由来自新西兰奥克兰大学的Ross Ihaka和Robert Gentleman开发。现在由“R开发核心团队”负责开发。R是基于S语言的一个GNU项目，所以也可以当作S语言的一种实现，通常用S语言编写的代码都可以不作修改的在R环境下运行。R的语法也同样是来自于Scheme\cite{rwiki}。
+
+R语言给我们提供了一套完整的数据处理、计算和制图软件系统。其功能包括：
+\BiSubsection{研究背景}{Background}
+
+计量经济学(Econometrics)作为经济学科的一个分支学科，在$20$世纪$20$年代末由R.Frish创立，经过$40$多年的发展，其经典理论方法已经成熟。自$20$世纪$70$年代以来，随着经济活动的复杂性增强和计量经济学应用领域的扩展，计量经济学理论方法得到了很大的发展。除了$2000$年诺贝尔经济学奖获得者J.J.Heckman对选择性样本模型理论的发展和D.L.Mcfadden对离散选择模型理论的发展，以及以此开创的微观计量经济学之外，宏观领域中动态计量经济学模型理论方法的发展是这个阶段最重要的部分，该方法以非参数模型理论方法为基础，并形成了较为完整的内容体系，构成了现代计量经济学的主要部分\cite{yaz2003}。然而到目前为止，它们仍旧处于新的领域，尚在研究和发展之中。因此，本文希望在前人研究的基础上，试图对它们的发展做出一点贡献。
+
+
+\BiSubsection{R语言概述}{R Language}
+
+R语言是主要用于统计分析、绘图的语言和操作环境。R本来是由来自新西兰奥克兰大学的Ross Ihaka和Robert Gentleman开发。现在由“R开发核心团队”负责开发。R是基于S语言的一个GNU项目，所以也可以当作S语言的一种实现，通常用S语言编写的代码都可以不作修改的在R环境下运行。R的语法也同样是来自于Scheme\cite{rwiki}。
+
+R语言给我们提供了一套完整的数据处理、计算和制图软件系统。其功能包括：
+
+\end{document}

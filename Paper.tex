@@ -1,0 +1,706 @@
+%!TEX program = xelatex
+%draft 选项可以使插入的图形只显示外框，以加快预览速度。
+%fleqn 让公式左对齐。
+\documentclass[12pt,a4paper,openany]{book}
+\usepackage{amsmath}  %数学公式
+\usepackage{amssymb} %数学符号
+\usepackage{mathrsfs}   % 不同于\mathcal or \mathfrak 之类的英文花体字体
+\usepackage{float}
+\usepackage{units}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{xCJKnumb} %使用汉字 章
+%\usepackage{subfigure}  % 并列的图形
+\usepackage{setspace}       % 定制表格和图形的多行标题行距
+\usepackage{supertabular}   % 使用跨页表格的宏包
+\usepackage{longtable}       %长表格，可以跨页
+\usepackage{tabularx}       %可以换行的表格
+\usepackage{booktabs}       %\hlinewd{2pt}、\midrule 和 \bottomrule，可分别对表格顶部、中部和底部使用不同粗细的水平线
+\usepackage{array}          %固定列宽可以使用array宏包的p{2cm}系列命令，需要指定水平对齐方式，可以使用下面的形式: >{\centering}p{2cm}
+\usepackage{makeidx}        % 生成索引
+\usepackage{listings}       %支持编程语言源代码的宏包
+%\usepackage{xcolor}   
+
+%===图片处理宏包=============================
+\usepackage{subfigure}  % 并列的图形
+\usepackage{color}      % 支持彩色
+\usepackage{rotating}
+
+
+% 版面控制宏包，定义规定的版面尺寸============
+\usepackage[top=2cm,bottom=2.5cm,left=2.8cm,right=2.8cm,includehead,includefoot%
+            ]{geometry}  
+
+\usepackage[perpage,symbol]{footmisc}% 脚注控制
+\usepackage{fancyhdr} %页眉页脚
+\usepackage[square,super,comma,sort,compress]{natbib} %文献格式
+\usepackage{titletoc}
+\usepackage{titlesec}
+\usepackage[dvipsnames,svgnames,x11names]{xcolor} %彩色工具
+\usepackage[CJKbookmarks=true]{hyperref}
+% 定理类环境宏包，其中 amsmath 选项用来兼容 AMS LaTeX 的宏包
+\usepackage[amsmath,thmmarks]{ntheorem}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+%\usepackage{subeqnarray} %多个子方程(1-1a)(1-1\pmb{\beta})
+%\iffalse 以下是一个例子
+%\begin{subeqnarray}
+%\label{eqw} \slabel{eq0}
+% x & = & a \times b \\
+%\slabel{eq1}
+% & = & z + t\\
+%\slabel{eq2}
+% & = & z + t
+%\end{subeqnarray}
+%\fi
+
+%首行缩进
+%\parindent=2em
+\makeatletter
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+\makeatother
+\setlength{\parindent}{2em}
+%% 定义正文字体
+\usepackage{fontspec}
+\usepackage[BoldFont,SlantFont,CJKnumber]{xeCJK}
+\setmainfont{Times New Roman} % 英文字体 
+\setmonofont{Consolas}
+%\setmonofont{Courier New}
+\setCJKmainfont{Adobe 宋体 Std} %正文字体  适用于OS X，其他OS可换为SimSun等
+\setCJKfamilyfont{song}{Adobe 宋体 Std}
+\setCJKfamilyfont{hei}{Adobe 黑体 Std}
+\setCJKfamilyfont{kai}{Adobe 楷体 Std}
+
+\newfontfamily{\E}{Arial}
+
+
+\newcommand\song{\CJKfamily{song}}
+\newcommand\hei{\CJKfamily{hei}}
+\newcommand\kai{\CJKfamily{kai}}
+\XeTeXlinebreaklocale "zh" %采用中文断行方式
+\XeTeXlinebreakskip = 0pt plus 1pt %字元间可加入0pt~1pt 的弹性间距，这样才能排出左右对齐的段落。
+\newfontfamily{\E}{Arial}
+\renewcommand{\baselinestretch}{1.5} %正文行距
+\usepackage{xunicode}% provides unicode character macros
+\usepackage{xltxtra} % provides some fixes/extras
+\usepackage{url}
+\usepackage{threeparttable}
+
+
+
+% 重定义字号命令
+\newcommand{\xiaochu}{\fontsize{30pt}{40pt}\selectfont}    % 小初, 1.5倍行距
+\newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}    % 一号, 1.4倍行距
+\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}    % 二号, 1.25倍行距
+\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}    % 小二, 单倍行距
+\newcommand{\sanhao}{\fontsize{16pt}{18pt}\selectfont}    % 三号, 1倍行距
+\newcommand{\xiaosan}{\fontsize{15pt}{22pt}\selectfont}    % 小三, 1.5倍行距
+\newcommand{\sihao}{\fontsize{14pt}{21pt}\selectfont}    % 四号, 1.5倍行距
+\newcommand{\banxiaosi}{\fontsize{13pt}{19.5pt}\selectfont}    % 半小四, 1.5倍行距
+\newcommand{\xiaosi}{\fontsize{12pt}{18pt}\selectfont}    % 小四, 1.5倍行距
+\newcommand{\dawuhao}{\fontsize{11pt}{11pt}\selectfont}    % 大五号, 单倍行距
+\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont}    % 五号, 单倍行距
+\newcommand{\xiaowu}{\fontsize{9pt}{9pt}\selectfont}    % 小五号, 单倍行距
+
+
+
+
+
+%页眉页脚
+%%% 正文页眉
+
+
+
+%页眉页脚
+%%% 正文页眉
+
+
+\pagestyle{fancy}
+
+%\fancyhf{} 
+\fancyhead{}
+\fancyhead[CE]{\song \wuhao\rightmark}
+\fancyhead[CO]{\song \wuhao \leftmark}
+\fancyfoot[C]{\thepage}%
+
+%%% 
+\def\mainmatter{\fancypagestyle{fancy}{}
+\fancyhf{} 
+\fancyhead{}
+\fancyhead[CE]{\song \wuhao\rightmark}
+\fancyhead[CO]{\song \wuhao \leftmark}
+\fancyfoot[C]{\thepage}%
+}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\quad #1}{}}
+%\renewcommand{\chaptermark}[1]{\markboth{\small 第\,\xCJKnumber{\thechapter}\,章\quad #1}{}}
+\renewcommand{\chaptermark}[1]{\markboth{ 第\,\thechapter \,章\quad #1}{}}
+
+%%% %%% Clear Header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Clear Header Style on the Last Empty Odd pages
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
+    \hbox{}%
+    \thispagestyle{empty}%              % Empty header styles
+    \newpage%
+    \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+
+
+%% 
+
+
+
+
+
+
+%% 正文标题格式
+%\titleformat{\chapter}[hang]{ \centering\xiaosan\hei\bfseries}{第\,\xCJKnumber{\thechapter}\,章}{1em}{} %章：小三黑体加粗并居中
+\titleformat{\chapter}[hang]{ \centering\xiaosan\hei\bfseries}{第\,\thechapter\,章}{1em}{} %章：小三黑体加粗并居中
+
+\titleformat{\section}[hang]{\hei\sihao\bfseries}{\thesection{}}{1em}{} %节：四号黑体加粗
+\titleformat{\subsection}[hang]{\bfseries\hei\xiaosi}{\thesubsection}{0.5em}{} %目：小四黑体加粗
+\titleformat{\subsubsection}[hang]{\bfseries\hei\xiaosi}{\thesubsubsection}{0.5em}{} %子目：小四黑体加粗
+%标题间距
+\titlespacing{\chapter}{0bp}{-30bp}{12bp}
+\titlespacing{\section}{0bp}{0bp}{12bp}
+\titlespacing{\subsection}{0bp}{12bp}{0bp}
+\titlespacing{\subsubsection}{0bp}{12bp}{0bp}
+   
+% 图表定义
+\renewcommand{\figurename}{\bfseries \song \xiaosi 图}
+\numberwithin{figure}{chapter}
+\renewcommand{\tablename}{\bfseries \song \xiaosi  表}
+\numberwithin{table}{chapter}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+%\renewcommand{\lstlistingname}{\bfseries \song \xiaowu 算法}
+%\def\thelstlisting{\thesection.\arabic{lstlisting}}
+
+
+
+%公式按章编号
+\numberwithin{equation}{chapter}
+\renewcommand{\theequation}{\thechapter-\arabic{equation}} 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 封面、摘要、版权、致谢格式定义
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\ctitle#1{\def\@ctitle{#1}}\def\@ctitle{}
+\def\cdegree#1{\def\@cdegree{#1}}\def\@cdegree{}
+\def\caffil#1{\def\@caffil{#1}}\def\@caffil{}
+\def\csubject#1{\def\@csubject{#1}}\def\@csubject{}
+\def\cauthor#1{\def\@cauthor{#1}}\def\@cauthor{}
+\def\cnumber#1{\def\@cnumber{#1}}\def\@cnumber{}
+\def\csubsub#1{\def\@csubsub{#1}}\def\@csubsub{}
+\def\csupervisor#1{\def\@csupervisor{#1}}\def\@csupervisor{}
+\def\cdate#1{\def\@cdate{#1}}\def\@cdate{}
+\def\ddate#1{\def\@ddate{#1}}\def\@ddate{}
+\long\def\cabstract#1{\long\def\@cabstract{#1}}\long\def\@cabstract{}
+\def\ckeywords#1{\def\@ckeywords{#1}}\def\@ckeywords{}
+
+\def\etitle#1{\def\@etitle{#1}}\def\@etitle{}
+\long\def\eabstract#1{\long\def\@eabstract{#1}}\long\def\@eabstract{}
+\def\ekeywords#1{\def\@ekeywords{#1}}\def\@ekeywords{}
+
+%\def\ack{\section*{致谢语}%
+  %\addtocontents{toc}{\protect\vspace{6pt}}%
+  %\addcontentsline{toc}{section}{Acknowledgements}%
+
+
+%中文封面%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\makecover{
+    \begin{titlepage}
+    \newpage
+    \thispagestyle{empty}
+
+    % \begin{minipage}[b][0cm][b]{9cm}
+    % \begin{flushleft}
+    % \song \xiaosi \bfseries {学校编码：10384}\\
+    % \song \xiaosi \bfseries {学号：\@cnumber}
+    % \end{flushleft}
+    % \end{minipage} \hfill
+
+    % \parbox[r][0cm][r]{13.6cm}{
+    % \begin{flushright}
+    % \song \xiaosi \bfseries {分类号\underline{~~~~~~~~~~~~~~}密级\underline{~~~~~~~~~~~~}}\\
+    % \song \xiaosi \bfseries {UDC\underline{~~~~~~~~~~~~~~}}
+    % \end{flushright}}
+
+    \begin{center}
+
+    \begin{figure}[htb!]
+        \centering
+        \includegraphics[width=4.1cm]{figure/xiaohui.jpg}
+    \end{figure}
+
+    \begin{figure}[htb!]
+        \centering
+        \includegraphics[width=8.2cm]{figure/xmulogo.jpg}
+    \end{figure}
+
+    \parbox[t][1cm][c]{\textwidth}{\yihao
+    \begin{center} {
+    \song \hei \@cdegree ~~~~毕~~~~业~~~~论~~~~文}\end{center} }
+
+    % \parbox[t][5cm][c]{\textwidth}{
+    % \begin{center}{\erhao \hei \bfseries \@ctitle }\end{center}
+    % \begin{center}{\sanhao \bfseries \@etitle }\end{center}}
+
+    % \parbox[t][1cm][c]{\textwidth}{\xiaoer\kai
+    % \begin{center} {\@cauthor}
+    % \end{center} }
+    \parbox[t][4cm][c]{\textwidth}{
+    \begin{center}
+    {\erhao \song \hei 题目：基于某某的某某某某}
+    \end{center}
+    }
+
+
+    \parbox[t][7cm][c]{\textwidth}{ {\sanhao\song
+    \begin{center}
+    \begin{tabular}{cc@{\extracolsep{1em}}l}
+    % ~ & 指导教师姓名：& \@csupervisor \\
+    % ~ & 专~~~业~~~名~~~称：& \@csubject \\
+    % ~ & 论文提交日期：& \@ddate\\
+    % ~ & 论文答辩时间：& \@ddate\\
+    % ~ & 学位授予日期：& \@ddate\\
+    ~ & 姓~~~名：& 章仲勇 \\
+    ~ & 学~~~院：& 某某某学院 \\
+    ~ & 系~~~别：& 双学位 \\
+    ~ & 专~~~业：& 统计学(数理) \\
+    ~ & 年~~~级：& 某某某级 \\
+    ~ & 学~~~号：& \@cnumber \\
+    ~ & 指导教师(校内)：& 某某某~~~    职称:教授 \\
+    ~ & 指导教师(校外)：& 某某某~~~    职称:教授
+    \end{tabular}
+    \end{center} } }
+
+    % \parbox[t][3.3cm][r]{\textwidth}{
+    % \begin{flushright}
+    % \song \sihao  {答辩委员会主席：\underline{~~~~~~~~~~~~~~~~~~~~}~~~~~~~~~~~~}\\
+    % \song \sihao  {评~~~~~~~~阅~~~~~~~~人：\underline{~~~~~~~~~~~~~~~~~~~~}~~~~~~~~~~~~}\\
+    % \end{flushright}}
+
+    \parbox[b][2cm][b]{\textwidth}{
+    \begin{center} {\xiaosan \song \@cdate~年~~~~~~~~月~~~~~~~~日} \end{center} }
+    \end{center}
+
+    % 封二 空白页
+    \cleardoublepage
+    \end{titlepage}
+}
+
+%%声明
+\long\def\statement{
+    \newpage
+    \thispagestyle{empty}
+    %\defaultfont
+
+    \begin{center}
+    \hspace{2em}
+    \parbox[t][2cm][t]{\textwidth}{ {\xiaoer \hei \centerline {\textbf{厦门大学本科学位论文诚信承诺书}}}}
+    \parbox[t][9cm][c]{0.96\textwidth}{ \song \sihao
+    \hspace{2em}本人呈交的学位论文是在导师指导下独立完成的研究成果。本人在论文写作中参考其他个人或集体已经发表的研究成果，均在文中以适当方式明确标明，并符合相关法律规范及《厦门大学本科毕业论文规范》。
+
+    \hspace{2em}另外，该学位论文为（\hspace{12em}）课题（组）的研究成果，
+    获得（\hspace{8em}）课题（组）经费或实验室的资助，在
+    （\hspace{7em}）实验室完成。（请在以上括号内填写课题或课题组负责人或实验室名称，未有此项声明内容的，可以不作特别声明。）
+}
+    \end{center}
+
+    \parbox[t][2cm][b]{\textwidth}{
+    \begin{flushright}
+    \song \xiaosi 学生声明（签名）：~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
+    \song \xiaosi 年~~~~~~~~月~~~~~~~~日~~~~~~~~~~~~~~~~
+    \end{flushright}
+    }
+    \begin{center}
+    \parbox[t][4cm][c]{0.96\textwidth}{ \song \sihao
+    \hspace{2em}该同学呈交的学位论文是在本人指导下独立完成的研究成果。本人已经对学生毕业论文内容进行严格审核，论文写作中参考其他个人或集体已经发表的研究成果，均在文中以适当方式明确标明，并符合相关法律规范及《厦门大学本科毕业论文规范》。}
+    \end{center}
+    \parbox[t][2cm][b]{\textwidth}{
+    \begin{flushright}
+    \song \xiaosi 指导教师声明（签名）：~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
+    \song \xiaosi 年~~~~~~~~月~~~~~~~~日~~~~~~~~~~~~~~~~
+    \end{flushright}
+    }
+
+
+    \cleardoublepage
+}
+
+\def\copyright{
+    \newpage
+    \thispagestyle{empty}
+    %\defaultfont
+    \begin{center}
+    \parbox[t][2cm][t]{\textwidth}{ {\xiaoer \hei \centerline {\textbf{厦门大学学位论文著作权使用声明}} } }
+    \parbox[t][15cm][c]{0.98\textwidth}{ \song \sihao
+    \hspace{2em}本人同意厦门大学根据《中华人民共和国学位条例暂行实施办法》等规定保留和使用此学位论文，
+    并向主管部门或其指定机构送交学位论文（包括纸质版和电子版），
+    允许学位论文进入厦门大学图书馆及其数据库被查阅、借阅。
+    本人同意厦门大学将学位论文加入全国博士、硕士学位论文共建单位数据库进行检索，
+    将学位论文的标题和摘要汇编出版，采用影印、缩印或者其它方式合理复制学位论文。\\
+    　　本学位论文属于：\\
+    　　（\hspace{3em}）1.经厦门大学保密委员会审查核定的保密学位论文，
+                 于　　年　　月　　日解密，解密后适用上述授权。\\
+    　　（\hspace{3em}）2.不保密，适用上述授权。\\
+    　　（请在以上相应括号内打“√”或填上相应内容。
+        保密学位论文应是已经厦门大学保密委员会审定过的学位论文，
+        未经厦门大学保密委员会审定的学位论文均为公开学位论文。此声明栏不填写的，默认为公开学位论文，均适用上述授权。）
+    }
+    \end{center}
+
+    \parbox[t][4cm][c]{\textwidth}{\song \xiaosan
+    \begin{flushright}
+    \song \xiaosi 声明人（签名）：~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \\
+    \song \xiaosi 年~~~~~~~~月~~~~~~~~日~~~~~~~~~~~~~~~~
+    \end{flushright}
+    }
+
+    \cleardoublepage
+}
+
+
+
+%% 中文摘要和关键词
+\newenvironment{cnabstract}[1][]{%
+        \thispagestyle{plain}%
+    \fancyfoot{}%
+    \def\XMU@keywords{#1}%
+        \vspace*{10bp}%
+        \begin{center}%
+        {\hei\sanhao 基于某某某某的论文}%
+        \end{center}
+
+    \vspace{12bp}%
+    \par%
+    \noindent
+    {\hei\sihao 摘~要}
+}{%
+    \par%
+    \vspace{12bp}%
+
+   % \noindent%
+    \noindent%
+    {\hei\sihao 关键词 }\quad{\XMU@keywords}%
+    \addcontentsline{toc}{chapter}{摘要}  %摘要加入目录
+    %\let\XMU@keywords=\relax%
+    \clearpage%
+    %\setcounter{page}{1}%
+    \cleardoublepage
+}
+
+
+%% 英文摘要和关键词
+\newenvironment{enabstract}[1]{%
+        \thispagestyle{plain}%
+    \fancyfoot{}%
+    \def\XMU@keywords{#1}%
+        \vspace*{10bp}%
+        \begin{center}%
+        {\bfseries\sanhao Blalalala Blalalala}%
+        \end{center}
+        \vspace{12bp}%
+    \par%
+    \noindent
+    {\hei\sihao \E Abstract~~}
+}{%
+    \par%
+    \vspace{12bp}%
+    \noindent%
+    {\bfseries\xiaosi Key Words }\quad{\XMU@keywords}%
+    \addcontentsline{toe}{chapter}{Abstract}  %摘要加入目录
+    %\let\XMU@keywords=\relax%
+    \clearpage%
+    %\setcounter{page}{0}%
+    
+    \cleardoublepage
+}
+
+
+
+%%目录设置
+\renewcommand\contentsname{\hei \sihao 目~~~~~录}
+\setcounter{secnumdepth}{4} \setcounter{tocdepth}{2}
+
+%\titlecontents{chapter}[3.8em]{\hspace{-3.8em}\hei \sihao \bfseries}{第~\xCJKnumber{\thecontentslabel}~章~~}{}{\titlerule*[4pt]{.}\contentspage}
+
+%修正章节数字在目录的距离
+\dottedcontents{section}[40pt]{}{22pt}{0.3pc}
+\dottedcontents{subsection}[62pt]{}{32pt}{0.3pc}
+
+%重新定义BiChapter命令，可实现标题手动换行，但不影响目录
+\def\BiChapter{\relax\@ifnextchar [{\@BiChapter}{\@@BiChapter}}
+\def\@BiChapter[#1]#2#3{\chapter[#1]{#2}
+    \addcontentsline{toe}{chapter}{\hei \bfseries \xiaosi Chapter \thechapter\hspace{0.5em} #3}}
+\def\@@BiChapter#1#2{\chapter{#1}
+    \addcontentsline{toe}{chapter}{\hei \bfseries \xiaosi Chapter \thechapter\hspace{0.5em}{\boldmath #2}}}
+%目录格式
+\newcommand{\BiSection}[2]
+{   \section{ #1}%中文
+    \addcontentsline{toe}{section}{\hei \xiaosi \bfseries \protect\numberline{\csname thesection\endcsname}#2}%英文
+    
+}
+
+\newcommand{\BiSubsection}[2]
+{    \subsection{#1}
+    \addcontentsline{toe}{subsection}{\song \xiaosi \protect\numberline{\csname thesubsection\endcsname}#2}
+}
+
+\newcommand{\BiSubsubsection}[2]
+{    \subsubsection{#1}
+    \addcontentsline{toe}{subsubsection}{\protect\numberline{\csname thesubsubsection\endcsname}#2}
+}
+
+\titlecontents{chapter}[3.8em]{\hspace{-3.8em}\hei \sihao \bfseries}{第~\thecontentslabel~章~~}{} {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
+    
+
+\titlecontents{section}[12bp]{\vspace{0pt}}
+    {\hei\xiaosi \bfseries \thecontentslabel\quad}{}
+    {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
+    
+\titlecontents{subsection}[12bp]{\vspace{0pt}}
+    {\song \xiaosi\thecontentslabel\quad}{}
+    {\hspace{.5em}\titlerule*[10pt]{$\cdot$}\contentspage}
+    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 英文目录格式
+\def\@dotsep{0.75}           % 定义英文目录的点间距
+\setlength\leftmargini {0pt}
+\setlength\leftmarginii {0pt}
+\setlength\leftmarginiii {0pt}
+\setlength\leftmarginiv {0pt}
+\setlength\leftmarginv {0pt}
+\setlength\leftmarginvi {0pt}
+
+\def\engcontentsname{\bfseries \xiaosan Contents}
+\newcommand\tableofengcontents{
+   \pdfbookmark[0]{Contents}{econtent}
+     \@restonecolfalse
+   \chapter*{\engcontentsname  %chapter*上移一行，避免在toc中出现。
+       \@mkboth{%
+          \engcontentsname}{\engcontentsname}}
+   \@starttoc{toe}%
+   \if@restonecol\twocolumn\fi
+   }
+
+%%暂时没有使用
+\newcommand{\BiAppendixChapter}[2] % 该附录命令适用于发表文章，简历等
+{\phantomsection
+\markboth{#1}{#1}
+\addcontentsline{toc}{chapter}{\xiaosi #1}
+\addcontentsline{toe}{chapter}{\bfseries \xiaosi #2}  \chapter*{#1}
+}
+
+\newcommand{\BiAppChapter}[2]    % 该附录命令适用于有章节的完整附录
+{\phantomsection 
+ \chapter{#1}
+ \addcontentsline{toe}{chapter}{\bfseries \xiaosi Appendix \thechapter~~#2}
+}
+
+
+
+
+
+%三线表
+\makeatletter
+\def\hlinewd#1{%
+  \noalign{\ifnum0=`}\fi\hrule \@height #1 \futurelet
+   \reserved@a\@xhline}
+\makeatother
+
+
+\raggedbottom
+
+
+%% 引用文献格式
+%\let\textcite=\cite
+%\renewcommand{\cite}[1]{\textsuperscript{\xiaosihao\textcite{#1}}}
+%\renewcommand\refname{\vspace{0pt}参考文献\vspace{12pt}}
+\renewcommand\bibname{参考文献} 
+
+
+%一些行距
+\makeatletter
+\def\enumerate{%
+ \ifnum \@enumdepth >\thr@@\@toodeep\else
+   \advance\@enumdepth\@ne
+   \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
+     \expandafter
+     \list
+       \csname label\@enumctr\endcsname
+       {\usecounter\@enumctr\def\makelabel##1{\hss\llap{##1}}%
+         \addtolength{\parsep}{0.25ex}
+         \addtolength{\itemsep}{-8pt} %%%%
+         \addtolength{\topsep}{-8pt}
+         }
+ \fi}
+\makeatother
+
+\makeatletter
+\def\itemize{%
+ \ifnum \@itemdepth >\thr@@\@toodeep\else
+   \advance\@itemdepth\@ne
+   \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
+   \expandafter
+   \list
+     \csname\@itemitem\endcsname
+     {\def\makelabel##1{\hss\llap{##1}}%
+         \addtolength{\parsep}{0.25ex}
+         \addtolength{\itemsep}{-8pt} %%%%
+         \addtolength{\topsep}{-8pt}
+         } %%%%
+ \fi}
+\makeatother
+
+
+
+\predisplaypenalty=0  %公式之前可以换页，公式出现在页面顶部
+
+
+
+
+
+            
+%%%文章正文
+\begin{document}
+
+\ctitle{厦门大学数学科学学院}
+\etitle{School of Mathematical Sciences  Xiamen University}
+\cdegree{本~~~~科}
+\caffil{数学科学学院}
+\cnumber{1******2202***}
+\cauthor{章~~仲~~勇}
+\csubsub{数理统计}
+\csupervisor{某~~~某~~~某~~~教授} %7.25字 一个~占0.25个中文字符
+\csubject   {统~~~~~~~~~计~~~~~~~~学} %7.25字
+\ddate{ 2~0~1~5~~年~~~~~~~~月} %7.25字
+\cdate{ \bf {2015}}
+
+\makecover
+
+
+%原创声明
+\statement
+%授权
+\copyright
+
+\pagenumbering{Roman} 
+\setcounter{page}{1} 
+
+
+\begin{cnabstract}[\xiaosi{ 关键词1，关键词2，关键词3}] 
+\xiaosi{ 摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容摘要内容
+}
+\end{cnabstract} 
+
+\begin{enabstract}{\wuhao{\E k1 , k2 , k3}}     
+\wuhao{\E
+    content of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstractcontent of abstract
+} 
+\end{enabstract} 
+
+%\pagenumbering{Roman}
+
+
+%目录
+\tableofcontents    % 中文目录
+\cleardoublepage
+\tableofengcontents % 英文目录
+\cleardoublepage
+
+
+\pagenumbering{arabic} 
+\setcounter{page}{1} 
+
+\mainmatter
+
+\BiChapter{引言}{Introduction}
+
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+
+
+\cleardoublepage
+
+
+\BiChapter{章1}{blalalalallala}
+
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+
+
+\BiSubsection{章2}{balalllllalla}
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+
+
+\BiSection{章节22}{babjnd}
+
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+
+\BiSection{章节33}{hhhdhh}
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+\BiSubsection{章节3}{hhhdhh}
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+
+\BiSubsection{例子四}{Example 4}
+
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+\BiChapter{结论}{Disscussion}
+
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+
+\BiAppendixChapter{附录}{Appendix}
+
+内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+
+
+\BiAppendixChapter{致谢词}{ACKNOWLEDGEMENTS}
+
+四年的大学生活随着这篇论文的落定即将划上一个句号，而于我的人生却只是一个逗号，因为又一次面对征程的开始。
+
+特别感谢
+特别感谢
+特别感谢
+特别感谢
+特别感谢
+特别感谢
+特别感谢
+特别感谢
+
+
+
+
+
+
+\bibliographystyle{XMU}
+\setlength{\bibsep}{0.5ex}  %参考文献行距 
+\phantomsection\addcontentsline{toc}{chapter}{参考文献}
+%\addcontentsline{toc}{chapter}{参考文献}      % 参考文献加入到中文目录
+\addcontentsline{toe}{chapter}{\bfseries  References} % 参考文献加入到英文目录
+%\addtolength{\bibsep}{-0.8em}
+\nocite{*}  %若将此命令屏蔽掉，则未引用的文献不会出现在文后的参考文献列表中。
+
+\bibliography{Paper}
+
+
+
+
+\end{document}

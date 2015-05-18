@@ -1,0 +1,216 @@
+\begin{thebibliography}{37}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Cai and Li(2008)]{cai2008nonparametric}
+\textsc{Z.~Cai, Q.~Li}.
+\newblock {Nonparametric estimation of varying coefficient dynamic panel data
+  models}[J].
+\newblock Econometric Theory, 2008, 24(05):1321--1342.
+
+\bibitem[Hardle(1994)]{h?rdle1992applied}
+\textsc{W.~Hardle}.
+\newblock Applied nonparametric regression.
+\newblock [M].
+\newblock Berlin: Cambridge Univ Pr, 1994: 1--433.
+
+\bibitem[Lee()]{lee1001nonparametric}
+\textsc{Y.~Lee}.
+\newblock {Nonparametric estimation of dynamic panel models with fixed
+  effects}[J].
+\newblock Ann Arbor, 1001.
+
+\bibitem[Lee(2005)]{lee2005nonparametric}
+\textsc{Y.~Lee}.
+\newblock {Nonparametric Estimation of dynamic panel models}[J].
+\newblock Yale University, mimeographed, 2005.
+
+\bibitem[Sua and Ullahb(2010)]{sua2010nonparametric}
+\textsc{L.~Sua, A.~Ullahb}.
+\newblock {Nonparametric and Semiparametric Panel Econometric Models:
+  Estimation and Testing}[J].
+\newblock Handbook of Empirical Economics and Finance, 2010: 455.
+
+\bibitem[Tran and Tsionas(2008)]{tran2008local}
+\textsc{K.C. Tran, E.G. Tsionas}.
+\newblock {Local GMM estimation of semiparametric dynamic panel data with
+  smooth coefficient models}[J].
+\newblock Econometric Reviews, forthcoming, 2008, 29:39--61.
+
+\bibitem[Ullah and Giles(1998)]{ullah1998handbook}
+\textsc{A.~Ullah, D.E.A. Giles}.
+\newblock {Handbook of Applied Economic Statistics}.
+\newblock [M].
+\newblock New York: CRC, 1998: 579--604.
+
+\bibitem[于艳萍 et al.(2008)]{yyp2008}
+\textsc{于艳萍, 张秀华, 钱争鸣}.
+\newblock
+  {劳动力流动对中国地区经济差距影响的空间计量经济模型分析}[J].
+\newblock 统计与信息论坛, 2008, 23(011):25--31.
+
+\bibitem[叶阿忠(2002)]{yaz2002}
+\textsc{叶阿忠}.
+\newblock {我国通货膨胀的非参数回归模型}[J].
+\newblock 数理统计与管理, 2002, 21(001):47--51.
+
+\bibitem[周先波(2002)]{zxbzhuji}
+\textsc{周先波}.
+\newblock {经济计量非线性模型的一个注记}[J].
+\newblock 中山大学学报: 自然科学版, 2002, 41(001):100--102.
+
+\bibitem[周先波 et al.(2009)]{zhouxianbo2009}
+\textsc{周先波, 李钜威, 杨逢利}.
+\newblock
+  关于全球化对经济增长的边际影响——基于面板数据模型非参数估计的分析[J].
+\newblock 世界经济研究, 2009, 3(003):27--32.
+
+\bibitem[周先波 and 田凤平(2009)]{zxb2009}
+\textsc{周先波, 田凤平}.
+\newblock
+  {中国城镇和农村居民医疗保健消费的差异性分析——基于面板数据恩格尔曲线模型的非参数估计}[J].
+\newblock 统计研究, 2009, 26(003):51--58.
+
+\bibitem[周先波 and 田凤平(2008)]{zxb20081}
+\textsc{周先波, 田凤平}.
+\newblock
+  {非参数估计方法在长江和珠江三角洲地区城镇居民消费支出分析中的应用}[J].
+\newblock 经济学, 2008, 7:1459--1476.
+
+\bibitem[周先波 and 盛华梅(2008)]{zxbxxh}
+\textsc{周先波, 盛华梅}.
+\newblock {信息化产出弹性的非参数估计分析}[J].
+\newblock 数量经济技术经济研究, 2008, 10:130--141.
+
+\bibitem[施祖麟 and 黄治华(2009)]{shizulin}
+\textsc{施祖麟, 黄治华}.
+\newblock {基于核密度估计法的中国省区经济增长动态分析}[J].
+\newblock 经济经纬, 2009, 4:60--63.
+
+\bibitem[段景辉 and 陈建宝(2011)]{djh2011}
+\textsc{段景辉, 陈建宝}.
+\newblock {城乡收入差距影响因素的非参数逐点回归解析}[J].
+\newblock 财经研究, 2011, 1:101--111.
+
+\bibitem[田凤平 and 周先波(2009)]{tfp}
+\textsc{田凤平, 周先波}.
+\newblock
+  {几乎理想需求系统面板数据模型的非参数估计分析}[J].
+\newblock 南方经济, 2009, 7:36--49.
+
+\bibitem[钱争鸣 et al.(2008)]{qzm2008}
+\textsc{钱争鸣, 邓明, 于艳萍}.
+\newblock {教育支出的产出效应研究——基于空间 Panel Data
+  与菲德模型的数量分析}[J].
+\newblock 教育与经济, 2008, 3:51--56.
+
+\bibitem[Zou and Hastie(2005)]{zou2005regularization}
+\textsc{Hui Zou, Trevor Hastie}.
+\newblock Regularization and variable selection via the elastic net[J].
+\newblock Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology), 2005, 67(2):301--320.
+
+\bibitem[Tibshirani(1996)]{tibshirani1996regression}
+\textsc{Robert Tibshirani}.
+\newblock Regression shrinkage and selection via the lasso[J].
+\newblock Journal of the Royal Statistical Society. Series B (Methodological),
+  1996: 267--288.
+
+\bibitem[Lai et al.(1985)]{lai1985strong}
+\textsc{Tze~Leung Lai, Herbert Robbins, Ching~Zong Wei}.
+\newblock
+\newblock
+\newblock Strong consistency of least squares estimates in multiple
+  regression[M]//Herbert Robbins Selected Papers.Springer, 1985:510--512.
+
+\bibitem[Frank and Friedman(1993)]{frank1993statistical}
+\textsc{LLdiko~E Frank, Jerome~H Friedman}.
+\newblock A statistical view of some chemometrics regression tools[J].
+\newblock Technometrics, 1993, 35(2):109--135.
+
+\bibitem[Farrar and Glauber(1967)]{farrar1967multicollinearity}
+\textsc{Donald~E Farrar, Robert~R Glauber}.
+\newblock Multicollinearity in regression analysis: the problem revisited[J].
+\newblock The Review of Economic and Statistics, 1967: 92--107.
+
+\bibitem[Donoho et al.(1992)]{ridge1992}
+\textsc{I~M Donoho, D L~Johnstone, J~C Hoch, A~S Stern}.
+\newblock Maximum entropy and the nearly black object(with discussion)[J].
+\newblock J R Statist B, 1992: 41--81.
+
+\bibitem[Shao(1992)]{cv1992}
+\textsc{J~Shao}.
+\newblock Linear model delection by cross-validation[J].
+\newblock J AM Statist Ass 88, 1992: 486--494.
+
+\bibitem[Broyden(1970)]{bcg1970}
+\textsc{C~G Broyden}.
+\newblock The Convergence of a Class of Double-rank Minimization Algorithms[J].
+\newblock J Inst Maths Applics, 1970: 76--90.
+
+\bibitem[Fletcher(1970)]{fr1992}
+\textsc{R~Fletcher}.
+\newblock A New Approach to Variable Metric Algorithms[J].
+\newblock Computer Journal, 1970: 317--322.
+
+\bibitem[Goldfarb(1970)]{gd}
+\textsc{D~Goldfarb}.
+\newblock A Family of Variable Metric Updates Derived by Variational Means[J].
+\newblock Mathematics of Computing, 1970: 23--26.
+
+\bibitem[Shanno(1970)]{df1970}
+\textsc{D~F Shanno}.
+\newblock Conditioning of Quasi Newton Methods for Function Minimization[J].
+\newblock Mathematics of Computing, 1970: 647--656.
+
+\bibitem[Welch and Goyal(2008)]{wg2008}
+\textsc{I~Welch, A~Goyal}.
+\newblock A Comprehensive Look at the Empirical Performance of Equity
+  Prediction[J].
+\newblock Review of Financial Studies 21, 2008: 1455?1508.
+
+\bibitem[JIAHAN~LI and WANG(2014)]{wgj2008}
+\textsc{IILIAS~TSIAKAS JIAHAN~LI, WEI WANG}.
+\newblock Journal of Financial Econometrics Advance Access[J].
+\newblock Journal of Financial Econometrics, 2014: 1--49.
+
+\bibitem[Yang et al.(2013)]{yangjie}
+\textsc{Jie Yang, Yunpeng~Cai Henry C M~Leung, S M~Yiu, Francis Y~L Chin}.
+\newblock Intra- and Inter-sparse Multiple Output Regression with Application
+  on Environmental Microbial Community Study[J].
+\newblock IEEE International Conference on Bioinformatics and Biomedicine,
+  2013: 1--6.
+
+\bibitem[Fan and Li(2001)]{fan2001variable}
+\textsc{Jianqing Fan, Runze Li}.
+\newblock Variable selection via nonconcave penalized likelihood and its oracle
+  properties[J].
+\newblock Journal of the American Statistical Association, 2001,
+  96(456):1348--1360.
+
+\bibitem[Knight and Fu(2000)]{knight2000asymptotics}
+\textsc{Keith Knight, Wenjiang Fu}.
+\newblock Asymptotics for lasso-type estimators[J].
+\newblock Annals of statistics, 2000: 1356--1378.
+
+\bibitem[Zou(2006)]{zou2006adaptive}
+\textsc{Hui Zou}.
+\newblock The adaptive lasso and its oracle properties[J].
+\newblock Journal of the American statistical association, 2006,
+  101(476):1418--1429.
+
+\bibitem[Fu(1998)]{fu1998penalized}
+\textsc{Wenjiang~J Fu}.
+\newblock Penalized regressions: the bridge versus the lasso[J].
+\newblock Journal of computational and graphical statistics, 1998,
+  7(3):397--416.
+
+\bibitem[Efron et al.(2004)]{efron2004least}
+\textsc{Bradley Efron, Trevor Hastie, Iain Johnstone}, et al.
+\newblock Least angle regression[J].
+\newblock The Annals of statistics, 2004, 32(2):407--499.
+
+\end{thebibliography}
